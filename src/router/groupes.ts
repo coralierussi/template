@@ -11,7 +11,7 @@ groupesRouter.post('/', async (req, res) => {
       name: req.body.data.name,
   }
   });
-  res.status(201).json(prisma.groupe);
+  res.status(201).json(NewGroupe);
 })
 
 groupesRouter.get("/:id", async (req, res) => {

@@ -13,7 +13,7 @@ usersRouter.post('/', async (req, res) => {
       mdp : req.body.data.mdp
   }
   });
-  res.status(201).json(prisma.user);
+  res.status(201).json(NewUser);
 })
 
 usersRouter.get("/:id", async (req, res) => {

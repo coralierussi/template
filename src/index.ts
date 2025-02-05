@@ -6,7 +6,7 @@ import { usersRouter } from "./router/users";
 import { elevesRouter } from "./router/eleves";
 import { classesRouter } from "./router/classes";
 import { groupesRouter } from "./router/groupes";
-import { checkBasic } from "./middlewares/checkBasic";
+//import { checkBasic } from "./middlewares/checkBasic";
 
 const app = express();
 
@@ -23,7 +23,7 @@ apiRouter.post('/auth/register', (req, res) => {
   res.json({status: "ok"})
 })
 
-app.use("/api", checkBasic, apiRouter);
+app.use("/api", apiRouter);
 
 
 app.listen(process.env.PORT, () => {

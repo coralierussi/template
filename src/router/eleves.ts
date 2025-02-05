@@ -12,7 +12,7 @@ elevesRouter.post('/', async (req, res) => {
       classeId: req.body.classeId
     }
   });
-  res.status(201).json(prisma.eleve);
+  res.status(201).json(NewEleve);
 })
 
 elevesRouter.get("/:id", async (req, res) => {

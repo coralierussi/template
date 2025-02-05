@@ -1,38 +1,58 @@
-POST http://localhost:3000/api/toto
+### User
+POST http://localhost:1337/api/users
 Content-Type: application/json
 
 {
     "data": {
-        "name" : "Toto"
+        "name" : "test",
+        "mdp": "test"
     }
 
 }
 
-###
-GET http://localhost:3000/api/toto
+### User
+GET http://localhost:1337/api/users
 
-### 
-POST http://localhost:3000/api/users
+### Classe
+POST http://localhost:1337/api/classes
 Content-Type: application/json
 
 {
-    "data":{
-        "name": "Testeur"
+    "data": {
+        "name" : "B3"
     }
+
 }
 
-### 
-GET http://localhost:3000/api/users/2
+### Classe
+GET http://localhost:1337/api/classes
 
-###
-POST http://localhost:3000/api/qcms
+### Eleve
+POST http://localhost:1337/api/eleves
 Content-Type: application/json
 
 {
-    "data":{
-        "title": "Test"
+    "data": {
+        "name" : "Tata",
+        "classeId": 4
     }
+
 }
 
-###
-GET http://localhost:3000/api/qcms
+### Eleve
+GET http://localhost:1337/api/eleves
+
+
+### Groupe
+POST http://localhost:1337/api/groupes
+Content-Type: application/json
+
+{
+    "data": {
+        "name" : "Tutu"
+    }
+
+}
+
+### Groupe
+GET http://localhost:1337/api/groupes

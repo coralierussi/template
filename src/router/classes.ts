@@ -11,7 +11,7 @@ classesRouter.post('/', async (req, res) => {
           name: req.body.data.name,
         }
     });
-  res.status(201).json(prisma.classe);
+  res.status(201).json(NewClasses);
 })
 
 classesRouter.get("/:id", async (req, res) => {
