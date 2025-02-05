@@ -9,7 +9,7 @@ elevesRouter.post('/', async (req, res) => {
     data: {
       email: req.body.data.name + "@gmail.com",
       name: req.body.data.name,
-      classeId: req.body.classes
+      classeId: req.body.classeId
     }
   });
   res.status(201).json(prisma.eleve);
