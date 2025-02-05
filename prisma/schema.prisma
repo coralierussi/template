@@ -17,4 +17,34 @@ model User {
   id    Int     @id @default(autoincrement())
   email String  @unique
   name  String?
+  mdp String
+}
+
+model Eleve {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String
+  groupeEleves GroupeEleve[]
+  classe Classe @relation(fields: [classeId], references: [id])
+  classeId Int
+}
+
+model Classe {
+  id    Int     @id @default(autoincrement())
+  name  String
+  eleves Eleve[]
+}
+
+model Groupe {
+  id    Int     @id @default(autoincrement())
+  name  String
+  groupeEleves GroupeEleve[]
+}
+
+model GroupeEleve {
+  id    Int     @id @default(autoincrement())
+  eleveID Int
+  eleves Eleve @relation(fields: [eleveID], references: [id])
+  goupeId Int
+  Groupes Groupe @relation(fields: [goupeId], references: [id])
 }

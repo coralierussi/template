@@ -1,19 +1,27 @@
+import { PrismaClient } from '@prisma/client'
 import { Router } from "express";
-import { User } from "..";
 
 export const usersRouter = Router();
+const prisma = new PrismaClient()
+
 
 usersRouter.post('/', async (req, res) => {
-  const users = await User.create({
-    pseudo: req.body.data.pseudo,
-    email: req.body.data.email,
-    mdp : req.body.data.mdp
+  const NewUser = await prisma.user.create({
+    data: {
+      email: req.body.data.name + "@gmail.com",
+      name: req.body.data.name,
+      mdp : req.body.data.mdp
+  }
   });
-  res.status(201).json(User);
+  res.status(201).json(prisma.user);
 })
 
 usersRouter.get("/:id", async (req, res) => {
-  const myUsers = await User.findByPk(parseInt(req.params.id));
+  const myUsers = await prisma.user.findUnique({
+    where: {
+      id: parseInt(req.params.id)
+    }
+  });
   if(!myUsers) {
     res.status(404).json({ message: "User not found" });
     return;
@@ -24,13 +32,16 @@ usersRouter.get("/:id", async (req, res) => {
 })
 
 usersRouter.put("/:id", async (req, res) => {
-  const myUsers: any = await User.findByPk(parseInt(req.params.id));
+  const myUsers: any = await prisma.user.findUnique({
+    where: {
+      id: parseInt(req.params.id)
+    }
+  });
   if(!myUsers) {
     res.status(404).json({ message: "User not found" });
     return;
   }
   else {
-    myUsers.title = req.body.data.pseudo;
     myUsers.email = req.body.data.email;
     myUsers.mdp = req.body.data.mdp;
     await myUsers.save();
@@ -39,7 +50,7 @@ usersRouter.put("/:id", async (req, res) => {
 })
 
 usersRouter.get("/", async (req, res) => {
-    let users = await User.findAll();
+    let users = await prisma.user.findMany();
     const pagination = req.query.pagination as { limit?: string, start?: string};
     if (pagination && pagination.limit) {
       let start = 0;
@@ -51,7 +62,11 @@ usersRouter.get("/", async (req, res) => {
 
 
 usersRouter.delete("/:id", async (req, res) => {
-  const myUsers: any = await User.findByPk(parseInt(req.params.id));
+  const myUsers: any = await prisma.user.findUnique({
+    where: {
+      id: parseInt(req.params.id)
+    }
+  });
    if(!myUsers) {
     res.status(404).json({ message: "User not found" });
     return;
