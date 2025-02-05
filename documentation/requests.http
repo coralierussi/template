@@ -34,7 +34,7 @@ Content-Type: application/json
 {
     "data": {
         "name" : "Tata",
-        "classeId": 4
+        "classeId": 1
     }
 
 }
