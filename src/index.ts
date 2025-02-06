@@ -7,6 +7,7 @@ import { elevesRouter } from "./router/eleves";
 import { classesRouter } from "./router/classes";
 import { groupesRouter } from "./router/groupes";
 import { checkToken } from "./middlewares/checkToken";
+import { authRouter } from "./router/auth";
 
 const app = express();
 
@@ -15,15 +16,12 @@ app.use(express.json());
 
 const apiRouter = express.Router();
 apiRouter.use("/users", usersRouter)
-apiRouter.use("/eleves", elevesRouter)
-apiRouter.use("/classes", classesRouter)
-apiRouter.use("/groupes", groupesRouter)
+apiRouter.use("/eleves", checkToken, elevesRouter)
+apiRouter.use("/classes", checkToken, classesRouter)
+apiRouter.use("/groupes", checkToken, groupesRouter)
+apiRouter.use("/auth", authRouter)
 
-apiRouter.post('/auth/register', (req, res) => {
-  res.json({status: "ok"})
-})
-
-app.use("/api", checkToken, apiRouter);
+app.use("/api", apiRouter);
 
 
 app.listen(process.env.PORT, () => {

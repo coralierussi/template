@@ -19,8 +19,11 @@ export async function checkToken (req: Request, res: Response, next: NextFunctio
             const token = (req.headers.authorization || '').split(' ')[1] || ''
             try {
                 console.log('token', token)
-                const mdp = jwt.verify(token, process.env.JWT_SECRET!)
-                console.log('decoded', mdp);
+                const decoded = jwt.verify(token, process.env.JWT_SECRET!)
+                if (decoded) {
+                    console.log('decoded', decoded);
+                    next()
+                }
             }
             catch(e){
                 console.log('invalid token on verify', e)
@@ -28,17 +31,4 @@ export async function checkToken (req: Request, res: Response, next: NextFunctio
             }
         }
     }
-    //console.log("authorization",req.headers.authorization)
-    //const b64auth = (req.headers.authorization || '').split(' ')[1] || ''
-//
-    //const user :any  = await prisma.user.findUnique({
-    //    where: { 
-    //        name
-    //    }
-    //  });
-    //  if (user && await bcrypt.compare(mdp, user.mdp)) {
-    //    console.log('Connexion réussie');
-    //  } else {
-    //  next()
-    //}
 }
