@@ -1,16 +1,22 @@
 import { PrismaClient } from '@prisma/client'
 import { Router } from "express";
+import bcrypt from "bcrypt";
 
 export const usersRouter = Router();
 const prisma = new PrismaClient()
 
 
 usersRouter.post('/', async (req, res) => {
+  const {name, email, mdp} = req.body
+  const hashMdp = await bcrypt.hash(
+    mdp,
+    parseInt(process.env.SALT_ROUNDS!)
+  )
   const NewUser = await prisma.user.create({
     data: {
-      email: req.body.data.name + "@gmail.com",
-      name: req.body.data.name,
-      mdp : req.body.data.mdp
+      email: name + "@gmail.com",
+      name: name,
+      mdp : hashMdp
   }
   });
   res.status(201).json(NewUser);

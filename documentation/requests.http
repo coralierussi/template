@@ -1,13 +1,11 @@
 ### User
 POST http://localhost:1337/api/users
 Content-Type: application/json
+Authorization: Bearer 
 
 {
-    "data": {
         "name" : "test",
         "mdp": "test"
-    }
-
 }
 
 ### User
@@ -18,10 +16,7 @@ POST http://localhost:1337/api/classes
 Content-Type: application/json
 
 {
-    "data": {
-        "name" : "B3"
-    }
-
+     "name" : "B3"
 }
 
 ### Classe
@@ -32,11 +27,8 @@ POST http://localhost:1337/api/eleves
 Content-Type: application/json
 
 {
-    "data": {
-        "name" : "Tata",
-        "classeId": 1
-    }
-
+    "name" : "Tata",
+    "classeId": 1
 }
 
 ### Eleve
@@ -48,10 +40,7 @@ POST http://localhost:1337/api/groupes
 Content-Type: application/json
 
 {
-    "data": {
-        "name" : "Tutu"
-    }
-
+    "name" : "Tutu"
 }
 
 ### Groupe

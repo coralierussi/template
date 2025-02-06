@@ -7,8 +7,8 @@ const prisma = new PrismaClient()
 elevesRouter.post('/', async (req, res) => {
   const NewEleve = await prisma.eleve.create({
     data: {
-      email: req.body.data.name + "@gmail.com",
-      name: req.body.data.name,
+      email: req.body.name + "@gmail.com",
+      name: req.body.name,
       classeId: req.body.classeId
     }
   });

@@ -8,7 +8,7 @@ const prisma = new PrismaClient()
 groupesRouter.post('/', async (req, res) => {
   const NewGroupe = await prisma.groupe.create({
     data: {
-      name: req.body.data.name,
+      name: req.body.name,
   }
   });
   res.status(201).json(NewGroupe);

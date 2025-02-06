@@ -8,7 +8,7 @@ const prisma = new PrismaClient()
 classesRouter.post('/', async (req, res) => {
     const NewClasses = await prisma.classe.create({
         data: {
-          name: req.body.data.name,
+          name: req.body.name,
         }
     });
   res.status(201).json(NewClasses);
